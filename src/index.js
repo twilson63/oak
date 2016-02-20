@@ -14,7 +14,7 @@ const createApp = ({ effects, reducers, render, target }) => {
   const loop = main(store.getState(), render, virtualDOM)
 
   // handle state changes
-  store.subscribe(loop.update)
+  store.subscribe(_ => loop.update(store.getState()))
 
   // apply app to dom
   target.appendChild(loop.target)

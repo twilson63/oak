@@ -36,7 +36,9 @@ var createApp = function createApp(_ref) {
   var loop = (0, _mainLoop2.default)(store.getState(), render, _virtualDom2.default);
 
   // handle state changes
-  store.subscribe(loop.update);
+  store.subscribe(function (_) {
+    return loop.update(store.getState());
+  });
 
   // apply app to dom
   target.appendChild(loop.target);
