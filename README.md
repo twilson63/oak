@@ -18,14 +18,14 @@ The purpose of this module is to make it very easy to get started building compo
 architected front-end applications.
 
 ```
-npm i oak -S
+npm i @twilson63/oak -S
 touch src/app.js
 ```
 
 ### app.js
 
 ``` js
-import createApp from 'oak'
+import createApp from '@twilson63/oak'
 import { effects, reducers, render, target } from './components'
 
 createApp({ effects, reducers, render, target })
