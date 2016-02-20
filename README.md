@@ -25,10 +25,10 @@ touch src/app.js
 ### app.js
 
 ``` js
-import { createApp } from 'oak'
-import { effects, reducers, render } from './components'
+import createApp from 'oak'
+import { effects, reducers, render, target } from './components'
 
-createApp(effects, reducers, render, document.body)
+createApp({ effects, reducers, render, target })
 ```
 
 ## Helper Methods
@@ -41,7 +41,9 @@ functions.
 #### Example
 
 ``` js
-import { div, h1 } from 'oak/hh'
+import hh from 'oak/hh'
+
+const { div, h1 } = hh
 
 const effects = store => {
 
