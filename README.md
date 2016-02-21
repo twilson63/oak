@@ -26,10 +26,29 @@ touch src/app.js
 
 ``` js
 import createApp from '@twilson63/oak'
-import { effects, reducers, render, target } from './components'
+import { reducers, render, target } from './components'
 
-createApp({ effects, reducers, render, target })
+const store = createApp({ reducers, render, target })
 ```
+
+## Component Structure
+
+A component simply consists of two functions:
+
+* reducer
+* render
+
+The reducer function takes two parameters and should return the new state.
+
+* state
+* action
+
+The state argument will contain the previous state for this component and the
+action will contain an object with a type attribute and another attributes to
+help.
+
+The render function, is responsible for returning vDOM nodes to be rendered in
+the virtual-dom library.
 
 ## Helper Methods
 
@@ -44,10 +63,6 @@ functions.
 import hh from 'oak/hh'
 
 const { div, h1 } = hh
-
-const effects = store => {
-
-}
 
 const reducer = (state = {}, action) => state
 
@@ -70,3 +85,11 @@ Using `most`, `linchpin`, and `page` work will with this collection of libraries
 This libraries bring in effects from the outside either via route management,
 server events, or dom events, using these in your effects section can simplify
 your process.
+
+## Thank you
+
+* virtual-dom
+* hyperscript
+* hyperscript-helpers
+* main-loop
+* redux 

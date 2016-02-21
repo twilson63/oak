@@ -1,24 +1,23 @@
 import virtualDOM from 'virtual-dom'
 import main from 'main-loop'
-import { map } from 'ramda'
+import { map, compose } from 'ramda'
 import { createStore, combineReducers } from 'redux'
 
-const createApp = ({ effects, reducers, render, target }) => {
+const buildStore = compose(createStore, combineReducers)
+
+const createApp = ({ reducers, render, target }) => {
   // create store
-  const store = createStore(combineReducers(reducers))
-
-  // initialize component effects
-  map(effect => effect(store), effects)
-
+  const store = buildStore(reducers)
   //start main loop
   const loop = main(store.getState(), render, virtualDOM)
-
+  // getState then update loop
+  const updateState = compose(loop.update, store.getState)
   // handle state changes
-  store.subscribe(_ => loop.update(store.getState()))
-
+  store.subscribe(updateState)
   // apply app to dom
   target.appendChild(loop.target)
-
+  // return store
+  return store
 }
 
 export default createApp
