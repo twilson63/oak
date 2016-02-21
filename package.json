@@ -12,5 +12,12 @@
   "license": "ISC",
   "devDependencies": {
     "tap": "^5.6.0"
+  },
+  "dependencies": {
+    "hyperscript-helpers": "^2.1.0",
+    "main-loop": "^3.2.0",
+    "ramda": "^0.19.1",
+    "redux": "^3.3.1",
+    "virtual-dom": "^2.1.1"
   }
 }
